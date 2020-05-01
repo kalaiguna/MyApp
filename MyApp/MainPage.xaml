@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:model="clr-namespace:MyApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="MyApp.MainPage">
+    <ContentPage.BindingContext>
+        <model:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center" />
+        <Editor Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Key}" />
+        <Button Grid.Row="2" Grid.Column="0"  Text="Save" Command="{Binding SaveCommand}" />
+        <Button Grid.Row="2" Grid.Column="1"  Text="Delete" Command="{Binding DeleteCommand}"/>
+        <CollectionView ItemsSource="{Binding Keys}" Grid.Row="3" Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label FontSize="Title"
+               Text="{Binding .}" 
+           HorizontalOptions="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
